@@ -1,0 +1,22 @@
+  5.0d0                                                         !beta
+  2.0d0                                                         !U
+  1.00d0                                                        !nParticle
+  16                                                            !Nx
+  64                                                            !Nf
+  9                                                             !neighbours
+  .false.                                                       !picklist - decide wether to read picklist
+  "inidata/<name_of_list>"                                      !picklist-filename
+  1                                                             !Ngrain
+  0                                                             !f_range
+  0.5d0                                                         !f_damping
+  100                                                           !maximum number of iterations
+  .false.                                                       !DGA
+  "inidata/<name_of_Lambda_file>"                               !file for Lambdas
+  .false.                                                       !use selfenergy from DMFT
+  "inidata/<name_of_DMFT_Sigma_file>"                           !filename for DMFT Sigma
+  .true.                                                        !decide whether to use U2 correction in selfenergy
+  .false.                                                       !decide whether to save whole F's
+  .false.                                                       !decide whether to do a oneshot calculation
+  .false.                                                       !old - decide whether to take old PAE implementation
+  .false.                                                       !SDE_old - decide whether to take old SDE implementation
+
