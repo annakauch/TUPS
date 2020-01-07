@@ -3,7 +3,7 @@
   1.00d0                                                        !nParticle
   16                                                            !Nx
   64                                                            !Nf
-  9                                                             !neighbours
+  1                                                             !neighbours
   .false.                                                       !picklist - decide wether to read picklist
   "inidata/<name_of_list>"                                      !picklist-filename
   1                                                             !Ngrain

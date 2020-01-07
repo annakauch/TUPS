@@ -52,41 +52,6 @@ subroutine symmetrize_sus(ite, converged)
     call symmetrize_array(Nf/2, chi0_ph(:), chi0_ph_BZ(:))
     call symmetrize_array(Nf/2, chi0_pp(:), chi0_pp_BZ(:))
 
-    if(make_sus_opt) then
-     
-    if(ite == ite_max - 1 .or. converged) then
-
-      if(.not. allocated(sus_d_opt)) allocate(sus_d_opt(Nx * Ny * Nf/2, 4))
-      if(.not. allocated(sus_m_opt)) allocate(sus_m_opt(Nx * Ny * Nf/2, 4))
-      if(.not. allocated(sus_s_opt)) allocate(sus_s_opt(Nx * Ny * Nf/2, 4))
-      if(.not. allocated(sus_t_opt)) allocate(sus_t_opt(Nx * Ny * Nf/2, 4))
-
-      do form_factor = 1, 4
-        call symmetrize_array(Nf/2, sus_d_IBZ_opt(:, form_factor), sus_d_opt(:, form_factor))
-        call symmetrize_array(Nf/2, sus_m_IBZ_opt(:, form_factor), sus_m_opt(:, form_factor))
-        call symmetrize_array(Nf/2, sus_s_IBZ_opt(:, form_factor), sus_s_opt(:, form_factor))
-        call symmetrize_array(Nf/2, sus_t_IBZ_opt(:, form_factor), sus_t_opt(:, form_factor))
-      end do !form_factor
-
-    end if !ite == ite_max
-
-    if(ite == ite_max - 1 .or. converged) then
-
-      if(.not. allocated(sus_pp_L)) allocate(sus_pp_L(Nx * Ny * Nf/2, 4))
-      if(.not. allocated(sus_pp_ph)) allocate(sus_pp_ph(Nx * Ny * Nf/2, 4))
-      if(.not. allocated(sus_pp_phb)) allocate(sus_pp_phb(Nx * Ny * Nf/2, 4))
-      if(.not. allocated(sus_pp_pp)) allocate(sus_pp_pp(Nx * Ny * Nf/2, 4))
-
-      do form_factor = 1, 4
-        call symmetrize_array(Nf/2, sus_pp_L_IBZ(:, form_factor), sus_pp_L(:, form_factor))
-        call symmetrize_array(Nf/2, sus_pp_ph_IBZ(:, form_factor), sus_pp_ph(:, form_factor))
-        call symmetrize_array(Nf/2, sus_pp_phb_IBZ(:, form_factor), sus_pp_phb(:, form_factor))
-        call symmetrize_array(Nf/2, sus_pp_pp_IBZ(:, form_factor), sus_pp_pp(:, form_factor))
-      end do !form_factor
-
-    end if !ite == ite_max
-
-    end if !makesus_opt
  
   end if !id == master
 
@@ -244,41 +209,6 @@ end subroutine symmetrize_sus
         chi_str = 'Chi/Final/chi_t'
         call hdf5_write_data(file_ident, chi_str, reshape(sus_t, (/ Nf/2, Nx * Ny, 4 /)))
 
-        if(make_sus_opt) then
-        !Sus_d_opt
-        chi_str = 'Chi/Final/chi_d_opt'
-        call hdf5_write_data(file_ident, chi_str, reshape(sus_d_opt, (/ Nf/2, Nx * Ny, 4 /)))
-    
-        !Sus_m_opt
-        chi_str = 'Chi/Final/chi_m_opt'
-        call hdf5_write_data(file_ident, chi_str, reshape(-sus_m_opt, (/ Nf/2, Nx * Ny, 4 /)))
-    
-        !Sus_s_opt
-        chi_str = 'Chi/Final/chi_s_opt'
-        call hdf5_write_data(file_ident, chi_str, reshape(sus_s_opt, (/ Nf/2, Nx * Ny, 4 /)))
-
-        !Sus_t_opt
-        chi_str = 'Chi/Final/chi_t_opt'
-        call hdf5_write_data(file_ident, chi_str, reshape(sus_t_opt, (/ Nf/2, Nx * Ny, 4 /)))
-
-
-        !Sus pp form L
-        chi_str = 'Chi/Final/chi_pp_from_L'
-        call hdf5_write_data(file_ident, chi_str, reshape(sus_pp_L, (/ Nf/2, Nx * Ny, 4 /)))
-    
-        !Sus pp form ph
-        chi_str = 'Chi/Final/chi_pp_from_ph'
-        call hdf5_write_data(file_ident, chi_str, reshape(sus_pp_ph, (/ Nf/2, Nx * Ny, 4 /)))
-
-        !Sus pp form phbar
-        chi_str = 'Chi/Final/chi_pp_from_phbar'
-        call hdf5_write_data(file_ident, chi_str, reshape(sus_pp_phb, (/ Nf/2, Nx * Ny, 4 /)))
-
-        !Sus pp form pp
-        chi_str = 'Chi/Final/chi_pp_from_pp'
-        call hdf5_write_data(file_ident, chi_str, reshape(sus_pp_pp, (/ Nf/2, Nx * Ny, 4 /)))
-
-        end if !make_sus_opt
 
         !chi0
         chi_str = 'Chi/Final/chi_0'

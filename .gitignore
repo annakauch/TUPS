@@ -1,0 +1,8 @@
+*.o
+*.dat
+*.h5
+*.hdf5
+*.pdf
+TUPS
+MOD/
+OBJ/

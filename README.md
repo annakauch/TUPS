@@ -5,12 +5,16 @@ For more information on the Truncated Unity parquet equations in general also se
 The code can be used under the GNU General Public License v3.0.
 
 ## Installation / Compilation
-This package includes a makefile.
+Create the folderns 'MOD' and 'OBJ' via
+```shell
+$mkdir MOD && mkdir OBJ
+```
+in the top directory.
+Compilation is otherwise handeled by a makefile that is inlcuded.
 Compilation with mpif90 has been tested.
 Further required kernels are BLAS and FFT.
 We include a FFT implementation in ./lib which one can simply link to, alternatively one could also link to another implementation (eg. MKL).
 For BLAS we link to intel's MKL library - linking to a different implementation should also be straight forward through altering the makefile.
-
 
 ## Execution
 The code can be executed via mpiexec.
